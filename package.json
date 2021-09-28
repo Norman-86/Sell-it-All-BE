@@ -1,0 +1,27 @@
+{
+  "name": "sell-it-all-be",
+  "version": "1.0.0",
+  "description": "An e-commerce app that allows students buy and sell their used items when moving around",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArabFullStack/Sell-it-All-BE.git"
+  },
+  "author": "Ola",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArabFullStack/Sell-it-All-BE/issues"
+  },
+  "homepage": "https://github.com/ArabFullStack/Sell-it-All-BE#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.8",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.13"
+  }
+}
