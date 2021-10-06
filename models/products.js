@@ -1,41 +1,39 @@
 const mongoose = require('mongoose');
-const { ObjectId } = mongoose.Schema.Types;
+const { Schema } = mongoose;
 
-const productSchema = new mongoose.Schema({
-  pName: {
+const productSchema = new Schema({
+  name: {
     type: String,
     required: true,
   },
-  pDescription: {
+  description: {
     type: String,
     required: true,
   },
-  pPrice: {
-    type: String,
+  price: {
+    type: Number,
     required: true,
   },
-  pQuantity: {
-    type: String,
+  quantity: {
+    type: Number,
     required: true,
   },
-  pCategory: {
-    type: ObjectId,
-    ref: 'categories',
+  category: {
+    type: String,
+    lowercase: true,
+    enum: ['furniture', 'books', 'bikes', 'electronics']
   },
-  pImages: {
+  image: {
     type: Array,
     required: true,
   },
-  pReviews: [
+  reviews: [
     {
-      review: String,
-      user: { type: ObjectId, ref: 'users' },
-      rating: String,
-      createdAt: Date,
-      default: Date.now(),
-    },
-  ],
+      type: Schema.Types.ObjectId,
+      ref: 'Review'
+    }
+  ]
 });
 
-const productModel = mongoose.model('products', productSchema);
-module.exports = productModel;
+const Product = mongoose.model('Product', productSchema);
+module.exports = Product;
