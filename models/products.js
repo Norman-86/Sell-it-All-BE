@@ -19,9 +19,8 @@ const productSchema = new Schema({
     required: true,
   },
   category: {
-    type: String,
-    lowercase: true,
-    enum: ['furniture', 'books', 'bikes', 'electronics']
+    type: Schema.Types.ObjectId,
+    ref: 'Category'
   },
   image: {
     type: Array,

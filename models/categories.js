@@ -1,22 +1,25 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-// const categorySchema = new mongoose.Schema({
-//   cName: {
-//     type: String,
-//     required: true,
-//   },
-//   cDescription: {
-//     type: String,
-//     required: true,
-//   },
-//   cImage: {
-//     type: String,
-//   },
-//   cStatus: {
-//     type: String,
-//     required: true,
-//   },
-// });
+const categorySchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+    },
+    products: [
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+        }
+    ]
+});
 
-// const Category = mongoose.model('Category', categorySchema);
-// module.exports = Category;
+const Category = mongoose.model('Category', categorySchema);
+module.exports = Category;
