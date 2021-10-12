@@ -4,14 +4,14 @@ const { Schema } = mongoose;
 const categorySchema = new Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     description: {
         type: String,
-        required: true,
+        required: true
     },
     image: {
-        type: String,
+        type: String
     }
 });
 
