@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/users');
 const secret = 'my-Own-Secret';
 
-//authenticate user/protect routes
+//authenticate user
 const authenticateUser = (req, res, next) => {
     const token = req.cookies.jwt;
     if (token) {
@@ -18,5 +18,25 @@ const authenticateUser = (req, res, next) => {
     }
 };
 
+//protect routes using requireLogin middleware & display current user
+const requireLogin = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if (token) {
+        jwt.verify(token, secret, async (err, decodedToken) => {
+            if (err) {
+                 res.locals.user = null;
+                next()
+            } else {
+                const user = await User.findById(decodedToken.id);
+                   res.locals.user = user
+                next()
+            }
+        })
+    } else {
+           res.locals.user = null;
+        next()
+    }
+};
 
-module.exports = { authenticateUser };
+
+module.exports = { authenticateUser, requireLogin };

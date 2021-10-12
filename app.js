@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 4000;
 const cookieParser = require('cookie-parser');
-const { authenticateUser } = require('./middlewares/auth');
+const { authenticateUser, requireLogin } = require('./middlewares/auth');
 
 //Middleware
 app.use(express.json());
@@ -24,6 +24,7 @@ app.use(reviewsRoutes);
 app.use(categoriesRoutes);
 app.use('/', userRoutes);
 app.use(authenticateUser);
+app.use(requireLogin);
 
 app.listen(port, () => {
   console.log(`app is listening on ${port}`);
