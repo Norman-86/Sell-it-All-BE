@@ -26,6 +26,12 @@ app.use('/', userRoutes);
 app.use(authenticateUser);
 app.use(requireLogin);
 
+//error handler utility
+app.use((err, req, res, next) => {
+  const { status = 500, message = 'Sorry, something went wrong' } = err;
+  res.status(status).json(message);
+});
+
 app.listen(port, () => {
   console.log(`app is listening on ${port}`);
 });
