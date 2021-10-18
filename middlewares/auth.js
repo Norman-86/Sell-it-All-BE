@@ -11,7 +11,7 @@ const authenticateUser = (req, res, next) => {
                return res.status(500).json({message: 'You are not authenticated'});
             } else {
                 next()
-            }
+            } 
         })
     } else {
         return res.status(500).json({message: 'Please login first'});

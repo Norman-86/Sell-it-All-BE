@@ -1,8 +1,12 @@
 const Category = require("../models/categories");
+const AppError = require("../utils/errorhandler");
 
 exports.fetchCategories = async (req, res, next) => {
     try {
         const categories = await Category.find({});
+        if (!categories) {
+            throw new AppError("Categories not found", 404);
+        }
         return res.status(200).json({ categories });
     } catch (err) {
         next(err)
